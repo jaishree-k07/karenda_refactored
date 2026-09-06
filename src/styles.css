@@ -78,7 +78,7 @@ h2 { font-family: "Playfair Display", serif; font-size: clamp(32px,4vw,48px); li
 }
 .active-filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 30px; }
 .active-filters span { padding: 7px 11px; background: var(--soft-green); border-radius: 100px; font-size: 12px; }
-.destination-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.destination-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
 .destination-card { overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 22px; transition: .25s; }
 .destination-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
 .card-image { height: 250px; position: relative; overflow: hidden; }
