@@ -11,6 +11,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { destinations } from "./data/destinations";
 import { getRecommendations } from "./utils/recommend";
+import { useFavorites } from "./hooks/useFavorites";
+import { DEFAULT_FILTERS } from "./constants";
 
 const SORT_OPTIONS = [
   { value: "rating-desc", label: "Top rated" },
@@ -21,15 +23,12 @@ const SORT_OPTIONS = [
 
 export default function App() {
   const [preferencesOpen, setPreferencesOpen] = useState(false);
-  const [filters, setFilters] = useState({ vibe: "Any", budget: 10000, travel: 10 });
+  const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [selected, setSelected] = useState(null);
   const [plannerDestination, setPlannerDestination] = useState(null);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("rating-desc");
-  const [favorites, setFavorites] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("karenda-favorites")) || []; }
-    catch { return []; }
-  });
+  const { favorites, toggleFavorite } = useFavorites();
 
   const visible = useMemo(() => {
     const filtered = destinations.filter(d => {
@@ -52,14 +51,6 @@ export default function App() {
     [favorites, filters]
   );
 
-  function toggleFavorite(id) {
-    setFavorites(prev => {
-      const next = prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id];
-      localStorage.setItem("karenda-favorites", JSON.stringify(next));
-      return next;
-    });
-  }
-
   function applyPreferences(next) {
     setFilters(next);
     setPreferencesOpen(false);
@@ -74,7 +65,7 @@ export default function App() {
   function navigate(id) {
     if (id === "favorites") {
       setSearch("");
-      setFilters({ vibe: "Any", budget: 10000, travel: 10 });
+      setFilters(DEFAULT_FILTERS);
       setTimeout(() => document.getElementById("discover")?.scrollIntoView({ behavior: "smooth" }), 50);
       return;
     }
@@ -157,7 +148,7 @@ export default function App() {
               <span>🧭</span>
               <h3>No perfect match yet.</h3>
               <p>Try increasing your budget or travel time.</p>
-              <button className="primary-btn" onClick={() => setFilters({ vibe: "Any", budget: 10000, travel: 10 })}>Show all destinations</button>
+              <button className="primary-btn" onClick={() => setFilters(DEFAULT_FILTERS)}>Show all destinations</button>
             </div>
           )}
 
