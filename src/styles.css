@@ -144,7 +144,15 @@ footer p,footer small { color: #b9c9c3; }
 }
 @media (max-width: 650px) {
   .navbar { padding: 0 4%; }
-  .nav-links button:not(.favorite-nav) { display: none; }
+  .nav-links { transition: max-height .25s ease; }
+@media (max-width: 650px) {
+  .nav-links { position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; align-items: flex-start; background: var(--paper); padding: 10px 5%; gap: 4px; display: none; border-bottom: 1px solid var(--line); }
+  .nav-links.open { display: flex; }
+  .hamburger { display: block; background: transparent; font-size: 24px; }
+}
+@media (min-width: 651px) {
+  .hamburger { display: none; }
+}
   .hero,.discover-section,.budget-section,.reviews-section,.contact-section { padding: 60px 5%; }
   .hero-image-wrap img { height: 390px; }
   .floating-card.top { left: 5px; }
