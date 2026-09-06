@@ -63,7 +63,7 @@ export const destinations = [
     id: 5,
     name: "Mysuru",
     location: "Karnataka",
-    image: "https://images.unsplash.com/photo-1600100397608-f010f8e6c9b8?auto=format&fit=crop&w=1000&q=80",
+    image: "https://images.unsplash.com/photo-1539413415627-9bd6cbc96518?auto=format&fit=crop&w=600&q=80",
     vibe: "Culture",
     budget: 4200,
     travel: 5,
