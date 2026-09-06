@@ -1,8 +1,15 @@
+
 export default function DestinationCard({ destination, favorite, onFavorite, onExplore }) {
   return (
     <article className="destination-card">
       <div className="card-image">
-        <img src={destination.image} alt={destination.name} />
+        <img
+          src={destination.image}
+          alt={destination.name}
+          loading="lazy"
+          width="400"
+          height="300"
+        />
         <button
           className={favorite ? "heart active" : "heart"}
           onClick={() => onFavorite(destination.id)}
